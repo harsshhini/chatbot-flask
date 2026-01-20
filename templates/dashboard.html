@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G.D. Naidu Museum Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .dashboard-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px;
+      background-color: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      color: #212529;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #212529;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .filter-container input[type="date"],
+    .filter-container input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .filter-container button {
+      padding: 8px 16px;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .export-btn {
+      display: inline-block;
+      margin: 10px 0 20px;
+      background-color: #198754;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .dashboard-table table {
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border-collapse: collapse;
+    }
+
+    .dashboard-table th {
+      background-color: #343a40;
+      color: white;
+      padding: 10px;
+    }
+
+    .dashboard-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .dashboard-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .dashboard-table tr:hover {
+      background-color: #e9ecef;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>🖋 G.D. Naidu Museum Booking Dashboard</h1>
+
+    <div class="filter-container">
+        <form method="get" action="/dashboard">
+            <label for="start_date">From:</label>
+            <input type="date" name="start_date" id="start_date" value="{{ request.args.get('start_date', '') }}">
+
+            <label for="end_date">To:</label>
+            <input type="date" name="end_date" id="end_date" value="{{ request.args.get('end_date', '') }}">
+
+            <input type="text" name="search" placeholder="Search by name/email" value="{{ request.args.get('search', '') }}">
+
+            <button type="submit">Filter</button>
+        </form>
+        {% if request.args.get('start_date') or request.args.get('end_date') or request.args.get('search') %}
+            <p style="text-align:center; margin-bottom:10px; color: #198754;">
+                Showing results 
+                {% if request.args.get('start_date') %} from <strong>{{ request.args.get('start_date') }}</strong>{% endif %}
+                {% if request.args.get('end_date') %} to <strong>{{ request.args.get('end_date') }}</strong>{% endif %}
+                {% if request.args.get('search') %} for "<strong>{{ request.args.get('search') }}</strong>"{% endif %}
+            </p>
+            {% endif %}
+
+    </div>
+
+    <a href="/export_bookings" class="export-btn">Export as CSV</a>
+
+    <div class="dashboard-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Name</th><th>Email</th><th>Date</th><th>Time</th><th>Adults</th><th>Children</th><th>Total ₹</th><th>Language</th><th>Booked At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in bookings %}
+          <tr>
+            <td>{{ row['id'] }}</td>
+            <td>{{ row['name'] }}</td>
+            <td>{{ row['email'] }}</td>
+            <td>{{ row['date'] }}</td>
+            <td>{{ row['time'] }}</td>
+            <td>{{ row['adults'] }}</td>
+            <td>{{ row['children'] }}</td>
+            <td>{{ row['total_amount'] }}</td>
+            <td>{{ row['language'] }}</td>
+            <td>{{ row['booked_at'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
