@@ -1,0 +1,322 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 0;
+  height: 100vh;
+  color: #f5f5f5;
+}
+h1 {
+  text-align: center;
+  color: #212529;
+  margin-bottom: 30px;
+}
+.filter-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-container input[type="date"] {
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.filter-container button {
+  padding: 6px 15px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.export-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #198754;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.dashboard-table table {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: #212529;
+}
+
+
+
+th {
+  background-color: #343a40;
+  border: 1px solid #ddd;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-bottom: 1px solid #dee2e6;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e9ecef;
+}
+#chatbox {
+  width: 100%;
+  max-width: 500px;
+  height: 85vh;
+  background: #111111;
+  border-radius: 16px;
+  padding: 20px 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+#chatbox::-webkit-scrollbar {
+  width: 8px;
+}
+#chatbox::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+  border-radius: 4px;
+}
+#chatbox::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bot-msg,
+.user-msg {
+  padding: 12px 16px;
+  margin: 6px 0;
+  border-radius: 18px;
+  max-width: 75%;
+  line-height: 1.5;
+  word-wrap: break-word;
+  font-size: 0.96em;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.bot-msg:hover,
+.user-msg:hover {
+  transform: scale(1.02);
+}
+
+/* Bot message with tail */
+.bot-msg {
+  background: #1a2d45;
+  align-self: flex-start;
+  color: #f1f1f1;
+  font-family: 'Merriweather', serif;
+}
+
+.bot-msg::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 15px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #1a2d45 transparent transparent;
+}
+
+/* User message with tail */
+.user-msg {
+  background: #e6d3b3;
+  align-self: flex-end;
+  color: #1a1a1a;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.user-msg::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 15px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent #e6d3b3;
+}
+
+.emoji {
+  margin-right: 6px;
+  font-size: 1.1em;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 6px 0 12px;
+  align-self: flex-start;
+}
+
+.button-container button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #e6d3b3;
+  background-color: #1a2d45;
+  color: #e6d3b3;
+  font-size: 0.93em;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button-container button:hover {
+  background-color: #243a54;
+  color: #ffffff;
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+input.name-input,
+input.email-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #34495e;
+  background-color: #101010;
+  color: #e6d3b3;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 0.95em;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Booking summary card style */
+.booking-summary-card {
+  background-color: #1a2d45;
+  border-radius: 12px;
+  padding: 16px;
+  color: #e6d3b3;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-family: 'Merriweather', serif;
+}
+
+.booking-summary-card .booking-details p {
+  margin: 6px 0;
+}
+
+.billing-table {
+  margin-top: 12px;
+  background-color: #101e33;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Merriweather', serif;
+  color: #f5f5f5;
+}
+
+.billing-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.billing-table th,
+.billing-table td {
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.billing-table th {
+  background-color: #2e4a66;
+}
+
+.billing-table tr:nth-child(even) {
+  background-color: #1b2d45;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (max-width: 600px) {
+  #chatbox {
+    height: 90vh;
+    padding: 14px 10px;
+  }
+
+  .bot-msg,
+  .user-msg {
+    font-size: 0.88em;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .button-container button {
+    font-size: 0.85em;
+    padding: 6px 12px;
+  }
+
+  input.name-input,
+  input.email-input {
+    font-size: 0.9em;
+  }
+
+  .booking-summary-card {
+    font-size: 0.9em;
+    padding: 12px;
+  }
+
+  .billing-table {
+    font-size: 0.85em;
+    padding: 8px;
+  }
+}
+input.date-input {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background-size: 24px 24px;
+  background-color: #2c2c2c;
+  cursor: pointer;
+  color: transparent;
+  text-shadow: 0 0 0 #2c2c2c; /* Prevent visible text */
+  font-size: 0; /* Hide text cursor */
+  margin: 10px 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+
+input.date-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #2c2c2c;
+  color: #f5f5f5;
+  width: fit-content;
+  font-size: 0.95em;
+  font-family: 'Segoe UI', sans-serif;
+}
